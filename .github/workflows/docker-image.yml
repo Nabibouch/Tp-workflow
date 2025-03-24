@@ -20,6 +20,7 @@ jobs:
             
             - name: Build image
               run: |
+                cd app
                 docker build -t ${{ secrets.DOCKER_USERNAME }}/my-image:latest .
                 docker tag ${{ secrets.DOCKER_USERNAME }}/my-image:latest ${{ secrets.DOCKER_USERNAME }}/my-image:${{ github.sha }}
             
