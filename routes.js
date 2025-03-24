@@ -2,7 +2,9 @@ import express from 'express'
 import mongoose from 'mongoose';
 
 
-app.get("/items", async (req, res) => {
+ const router = express.Router();
+
+router.get("/items", async (req, res) => {
     try {
       const items = await Item.find();
       res.json(items);
@@ -11,7 +13,7 @@ app.get("/items", async (req, res) => {
       }
 });
 
-app.post("/items", async (res, req) =>{
+router.post("/items", async (res, req) =>{
     try {
         const{name} = req.body;
         if (!name) {
@@ -26,8 +28,5 @@ app.post("/items", async (res, req) =>{
     }
 })
 
+export default router;
 
-
-app.listen(PORT, () => {
-    console.log(`Serveur lancé sur http://localhost:${PORT}`);
-  });
